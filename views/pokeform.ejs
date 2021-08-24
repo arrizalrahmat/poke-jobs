@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <title>Add Pokemon</title>
+  <%- include('partials/bootstrap') %>
+</head>
+
+<body>
+  <%- include('partials/navbar') %>
+  <div class="container">
+    <h1>Add Pokemon</h1>
+    <% if(err) { %>
+      <div class="alert alert-danger" role="alert">
+        <%= err %>
+      </div>
+    <% }%>
+    <form action="/pokemon/add" method="post">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="name">Name</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Your Pokemon Name" aria-label="name"
+          aria-describedby="basic-addon1" name="name">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="name">Type</span>
+        </div>
+        <select class="custom-select" id="job" name="type">
+          <option selected value="">Choose...</option>
+          <% jobs.forEach(item => { %>
+          <option value="<%= item.type %>"><%= item.type %></option>
+          <% }) %>
+        </select>
+        
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="ball">Ball Type</label>
+        </div>
+        <select class="custom-select" id="ball" name="ball">
+          <option selected value="">Choose...</option>
+          <option value="Pokeball">Pokeball</option>
+          <option value="Great Ball">Great Ball</option>
+          <option value="Ultra Ball">Ultra Ball</option>
+          <option value="Master Ball">Master Ball</option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="job">Job</label>
+        </div>
+        <select class="custom-select" id="job" name="jobId">
+          <option selected value="">Choose...</option>
+          <% jobs.forEach(item => { %>
+          <option value="<%= item.id %>"><%= item.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+</body>
+
+</html>

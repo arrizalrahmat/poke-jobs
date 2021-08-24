@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <title>Pokemons</title>
+  <%- include('partials/bootstrap') %>
+</head>
+
+<body>
+  <%- include('partials/navbar') %>
+  <h1>Pokemon Page</h1>
+  <div class="container">
+    <div class="my-1">
+      <a href="/pokemon/add">
+        <button class="btn btn-primary">Add</button>
+      </a>
+    </div>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Level</th>
+          <th scope="col">Income</th>
+          <th scope="col">Ball</th>
+          <th scope="col">Job</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% pokes.forEach(item => { %>
+        <tr>
+          <th scope="row"><%= item.id %></th>
+          <td><%= item.name %></td>
+          <td><%= item.type %></td>
+          <td><%= item.level %></td>
+          <td><%= item.income %></td>
+          <td><%= item.ball %></td>
+          <td><%= item.Job.name %></td>
+          <td>
+            <a href="/pokemon/<%= item.id %>/train?q=5">Train</a> | 
+            <a href="/pokemon/<%= item.id %>/train?q=10">Super Train</a>
+            <% if(item.level >= 50) { %>
+              | <a href="/pokemon/<%= item.id %>/work">Work</a>
+            <% } %>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
